@@ -10,6 +10,7 @@ For simplicity of printing I recommend representing the pieces as X and O and em
 Example Board:
 
 1|2|3|4|5|6|7
+
 #|#|#|#|#|#|#
 -------------
 #|#|#|#|#|#|#
