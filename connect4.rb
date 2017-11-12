@@ -12,7 +12,7 @@ def makeGameBoard
   return game_board_array
 end
 
-#Print board into console function
+#function to print board into console
 def print_game_board(game_board)
   puts game_board[0].join(" | ")
   puts "-------------------------"
@@ -29,6 +29,7 @@ def print_game_board(game_board)
   puts game_board[6].join(" | ")
 end
 
+#function to evaluate game
 def evaluate_game(game_board)
   game_finished = false
     for i in 0..5
@@ -66,8 +67,7 @@ def evaluate_game(game_board)
       end
       
       for j in 0..6 #columns
-      
-      #puts "Llega aqui " + game_board[i][j].to_s
+     
       
         if (j<=3) #if it has 4 spaces to the right
           if (i>=4)#if it has 4 spaces up
@@ -79,7 +79,6 @@ def evaluate_game(game_board)
           end
           if (i<=3)#if it has 4 spaces down
             #Evalaution
-            #puts "llega a if<4"
               if(game_board[i][j]==game_board[i+1][j+1])&&(game_board[i][j]==game_board[i+2][j+2])&&(game_board[i][j]==game_board[i+3][j+3])&&((game_board[i][j] == "X")||(game_board[i][j] == "O"))
                 puts "User " + game_board[i][j].to_s + " wins"
                 game_finished = true
@@ -112,34 +111,27 @@ def evaluate_game(game_board)
         
       end
     end
-  
-  #if (game_board[0][0]==game_board[1][1]) && (game_board[0][0] == game_board[2][2])
-   # puts "User " + game_board[0][0].to_s + " wins"
-    #game_finished = true
-    #elsif (game_board[2][0]==game_board[1][1]) && (game_board[2][0] == game_board[0][2])
-    #puts "User " + game_board[2][0].to_s + " wins"
-    #game_finished = true
-  #end
-  
+ 
   return game_finished
   
 end
 
-#Initial statements
+#Initial variables
 user_turn = 'X'
 game_board = makeGameBoard
 counter = 0
 print_game_board(game_board)
 
+#Loop to promt user to play
 loop do
   
+  #Evaluation if the game is over and no one won
   if (counter >= 36)
     puts "Game Over! No player won"
     break
   end
   
   puts "Your turn player " + user_turn
-    
     
     counter_loop = 6
     possibilities = [0,1,2,3,4,5,6]
@@ -153,6 +145,7 @@ loop do
         next
       end
       
+      #Take slot according to players choice
       loop do
         if (game_board[counter_loop][column] == "#")
           game_board[counter_loop][column] = user_turn
@@ -180,7 +173,7 @@ loop do
     break
   end
   
-  #Change player
+  #If there's no winner yet, change player
   if user_turn == 'X'
     user_turn = 'O'
       else user_turn = 'X'
